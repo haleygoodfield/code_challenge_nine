@@ -76,6 +76,19 @@ calculateTotalPayroll() {
         return total + annualSalary;
     }, 0);
  }
+
+
+// Task 5: Implementing Promotions 
+// Add a method promoteToManager(employee, teamSize) in the Company class.
+promoteToManager(employee, teamSize) {
+    const index = this.employees.findIndex(haley => haley.id === employee.id);
+    if (index !== -1 && !(this.employees[index] instanceof Manager)) {
+
+        // This method should convert an Employee into a Manager while retaining their original details
+        this.employees[index] = new Manager(
+            employee.name, employee.id, employee.department, employee.salary, teamSize);
+        }
+    }
 }
  // Test Cases: Task 3
  const company = new Company("TechCorp");
@@ -90,4 +103,8 @@ calculateTotalPayroll() {
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
-// Named task 4 incorrectly 
+
+// Test Cases: Task 5 
+company.promoteToManager(emp1, 3);
+company.listEmployees();
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
