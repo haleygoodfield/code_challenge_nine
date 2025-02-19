@@ -90,3 +90,4 @@ calculateTotalPayroll() {
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
+// Named task 4 incorrectly 
