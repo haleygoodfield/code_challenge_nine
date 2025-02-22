@@ -2,20 +2,20 @@
 // Create a class Employee with the following properties: name, id, department, salary
 class Employee {
     constructor(name, id, department, salary) {
-        this.name = name;
-        this.id = id;
-        this.department = department;
-        this.salary = salary;
+        this.name = name; // Employee name
+        this.id = id; // Employee id
+        this.department = department; // Employee department
+        this.salary = salary; // Employee salary
     } 
     // Add a method getDetails() that returns a formatted string of employee details
     getDetails () {
-        return `Employee name: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`;
+        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`;
     }
     // Add a method calculateAnnualSalary() that returns the employee’s annual salary (salary * 12)
     calculateAnnualSalary() {
     return this.salary * 12;
     }
-} 
+};
 // Test Cases:
 // Instantiate an employee object and log its details to the console
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000);
@@ -38,9 +38,13 @@ class Manager extends Employee { // The Manager class should inherit from Employ
     }
     // Add a method calculateBonus() that returns 10% of the manager’s annual salary
     calculateBonus() {
-        return this.calculateAnnualSalary() * 0.1;
+        return this.salary * 12 * 0.10;
     }
-}
+    // Modify calculateAnnualSalary() in the Employee class to consider bonuses for managers
+    calculateAnnualSalary() {
+        return this.salary * 12 + this.calculateBonus();
+    }
+};
 // Test Cases 
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5);
 console.log(mgr1.getDetails());
@@ -57,39 +61,48 @@ class Company {   // create a Company class
         this.employees = []; // create an array employees to store employee objects
     }
         addEmployee(employee) { // Adds an employee to the array
-        this.employees.push(employee);
+            this.employees.push(employee);
     }
-        listEmployees() { // Logs all employees’ details
-        this.employees.forEach(employee => console.log(employee.getDetails()));
+        listEmployees() { // Logs all employees details
+            this.employees.forEach(employee => console.log(employee.getDetails()));
     }
 
 
 
 // Task 4: Implementing a Payroll System
-// dd a method calculateTotalPayroll() to the Company class that returns the sum of all employee salaries (including managers)
+// Add a method calculateTotalPayroll() to the Company class that returns the sum of all employee salaries (including managers)
 calculateTotalPayroll() {
     return this.employees.reduce((total, employee) => {
-        let annualSalary = employee.calculateAnnualSalary(); // Modify calculateAnnualSalary() in the Employee class to consider bonuses for managers
-        if (employee instanceof Manager) {
-            annualSalary += employee.calculateBonus();
-        }
-        return total + annualSalary;
+        return total + employee.calculateAnnualSalary();
     }, 0);
- }
+};
+        
+       // let annualSalary = employee.calculateAnnualSalary(); // Modify calculateAnnualSalary() in the Employee class to consider bonuses for managers
+       // if (employee instanceof Manager) {
+       //     annualSalary += employee.calculateBonus();
+        
+       // return total + annualSalary;
+     //0);
 
 
 // Task 5: Implementing Promotions 
 // Add a method promoteToManager(employee, teamSize) in the Company class.
 promoteToManager(employee, teamSize) {
-    const index = this.employees.findIndex(haley => haley.id === employee.id);
-    if (index !== -1 && !(this.employees[index] instanceof Manager)) {
+    const index = this.employees.indexOf(employee);
+    this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+    
+    }
+};
+
+  //  const index = this.employees.findIndex(haley => haley.id === employee.id);
+  //  if (index !== -1 && !(this.employees[index] instanceof Manager)) {
 
         // This method should convert an Employee into a Manager while retaining their original details
-        this.employees[index] = new Manager(
-            employee.name, employee.id, employee.department, employee.salary, teamSize);
-        }
-    }
-}
+   //     this.employees[index] = new Manager(
+    //        employee.name, employee.id, employee.department, employee.salary, teamSize);
+       
+    
+
  // Test Cases: Task 3
  const company = new Company("TechCorp");
  company.addEmployee(emp1);
