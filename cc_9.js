@@ -55,7 +55,7 @@ console.log(mgr1.calculateBonus()); // Expected output: 9600
 
 
 // Task 3: Creating a Company Class
-class Company {   // create a Company class 
+class Company { // create a Company class 
     constructor(name) {
         this.name = name; // create a property name (string) for the company’s name
         this.employees = []; // create an array employees to store employee objects
@@ -69,40 +69,25 @@ class Company {   // create a Company class
 
 
 
-// Task 4: Implementing a Payroll System
-// Add a method calculateTotalPayroll() to the Company class that returns the sum of all employee salaries (including managers)
-calculateTotalPayroll() {
-    return this.employees.reduce((total, employee) => {
-        return total + employee.calculateAnnualSalary();
-    }, 0);
-};
+    // Task 4: Implementing a Payroll System
+    // Add a method calculateTotalPayroll() to the Company class that returns the sum of all employee salaries (including managers)
+    calculateTotalPayroll() {
+        return this.employees.reduce((total, employee) => {
+         return total + employee.calculateAnnualSalary();
+      }, 0);
+    };
         
-       // let annualSalary = employee.calculateAnnualSalary(); // Modify calculateAnnualSalary() in the Employee class to consider bonuses for managers
-       // if (employee instanceof Manager) {
-       //     annualSalary += employee.calculateBonus();
-        
-       // return total + annualSalary;
-     //0);
 
 
-// Task 5: Implementing Promotions 
-// Add a method promoteToManager(employee, teamSize) in the Company class.
-promoteToManager(employee, teamSize) {
-    const index = this.employees.indexOf(employee);
-    this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
-    
+    // Task 5: Implementing Promotions 
+    // Add a method promoteToManager(employee, teamSize) in the Company class.
+    promoteToManager(employee, teamSize) {
+        const index = this.employees.indexOf(employee);
+        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
     }
 };
 
-  //  const index = this.employees.findIndex(haley => haley.id === employee.id);
-  //  if (index !== -1 && !(this.employees[index] instanceof Manager)) {
-
-        // This method should convert an Employee into a Manager while retaining their original details
-   //     this.employees[index] = new Manager(
-    //        employee.name, employee.id, employee.department, employee.salary, teamSize);
-       
-    
-
+ 
  // Test Cases: Task 3
  const company = new Company("TechCorp");
  company.addEmployee(emp1);
@@ -111,6 +96,7 @@ promoteToManager(employee, teamSize) {
 // Expected output:
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
+
 
 // Test Cases: Task 4
 console.log(company.calculateTotalPayroll()); 
