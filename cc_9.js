@@ -79,7 +79,7 @@ class Company { // create a Company class
     // Add a method promoteToManager(employee, teamSize) in the Company class.
     promoteToManager(employee, teamSize) {
         const index = this.employees.indexOf(employee);
-        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize); // method should convert an Employee into a Manager while retaining their original details
     }
 };
 
