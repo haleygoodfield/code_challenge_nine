@@ -6,14 +6,14 @@ class Employee {
         this.id = id; // Employee id
         this.department = department; // Employee department
         this.salary = salary; // Employee salary
-    } 
+    };
     // Add a method getDetails() that returns a formatted string of employee details
     getDetails () {
         return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`;
     }
     // Add a method calculateAnnualSalary() that returns the employee’s annual salary (salary * 12)
     calculateAnnualSalary() {
-    return this.salary * 12;
+        return this.salary * 12;
     }
 };
 // Test Cases:
@@ -27,10 +27,10 @@ console.log(emp1.calculateAnnualSalary()); // Expected output: 60000
 
 
 // Task 2: Creating a Manager Class (Inheritance & Method Overriding)
-class Manager extends Employee { // The Manager class should inherit from Employee
-    constructor(name, id, department, salary, teamSize) { // Add a new property: teamSize (number)
-        super(name, id, department, salary);
-        this.teamSize = teamSize;
+class Manager extends Employee { // Creating the Manager class 
+    constructor(name, id, department, salary, teamSize) { 
+        super(name, id, department, salary); // The Manager class should inherit from Employee
+        this.teamSize = teamSize; // // Add a new property: teamSize (number)
     }
     // Override getDetails() to include the team size
     getDetails() {
@@ -38,11 +38,11 @@ class Manager extends Employee { // The Manager class should inherit from Employ
     }
     // Add a method calculateBonus() that returns 10% of the manager’s annual salary
     calculateBonus() {
-        return this.salary * 12 * 0.10;
+        return super.calculateAnnualSalary() * 0.1;
     }
     // Modify calculateAnnualSalary() in the Employee class to consider bonuses for managers
     calculateAnnualSalary() {
-        return this.salary * 12 + this.calculateBonus();
+        return super.calculateAnnualSalary() + this.calculateBonus();
     }
 };
 // Test Cases 
@@ -65,16 +65,12 @@ class Company { // create a Company class
     }
         listEmployees() { // Logs all employees details
             this.employees.forEach(employee => console.log(employee.getDetails()));
-    }
-
-
+    };
 
     // Task 4: Implementing a Payroll System
     // Add a method calculateTotalPayroll() to the Company class that returns the sum of all employee salaries (including managers)
     calculateTotalPayroll() {
-        return this.employees.reduce((total, employee) => {
-         return total + employee.calculateAnnualSalary();
-      }, 0);
+        return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(),0);
     };
         
 
